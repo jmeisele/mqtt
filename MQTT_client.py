@@ -6,11 +6,19 @@ def on_connect(client, userdata, flags, rc):
 
     # Subscribing in on_connect() means that if we lose the connection and
     # reconnect then subscriptions will be renewed.
-    client.subscribe("$SYS/#")
+    client.subscribe("IoT/test")
+    client.subscribe("DataScience/test")
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
+    
+    if msg.payload == "Hello":
+        print("Received message #1, do something")
+        #Do something
+    if msg.payload == "World":
+        print("Received message #2, do something")
+        #Do something else
 
 client = mqtt.Client()
 client.on_connect = on_connect
