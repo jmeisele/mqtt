@@ -1,12 +1,3 @@
-#------------------------------------------
-#--- Author: Pradeep Singh
-#--- Date: 20th January 2017
-#--- Version: 1.0
-#--- Python Ver: 2.7
-#--- Details At: https://iotbytes.wordpress.com/store-mqtt-data-from-sensors-into-sql-database/
-#------------------------------------------
-
-
 import paho.mqtt.client as mqtt
 import random, threading, json
 from datetime import datetime
@@ -45,7 +36,7 @@ mqttc.connect(MQTT_Broker, int(MQTT_Port), int(Keep_Alive_Interval))
 def publish_To_Topic(topic, message):
 	mqttc.publish(topic,message)
 	print ("Published: " + str(message) + " " + "on MQTT Topic: " + str(topic))
-	print ""
+	print ("")
 
 
 #====================================================
@@ -67,7 +58,7 @@ def publish_Fake_Sensor_Values_to_MQTT():
 		Humidity_Data['Humidity'] = Humidity_Fake_Value
 		humidity_json_data = json.dumps(Humidity_Data)
 
-		print "Publishing fake Humidity Value: " + str(Humidity_Fake_Value) + "..."
+		print ("Publishing fake Humidity Value: " + str(Humidity_Fake_Value) + "...")
 		publish_To_Topic (MQTT_Topic_Humidity, humidity_json_data)
 		toggle = 1
 
@@ -80,11 +71,9 @@ def publish_Fake_Sensor_Values_to_MQTT():
 		Temperature_Data['Temperature'] = Temperature_Fake_Value
 		temperature_json_data = json.dumps(Temperature_Data)
 
-		print "Publishing fake Temperature Value: " + str(Temperature_Fake_Value) + "..."
+		print ("Publishing fake Temperature Value: " + str(Temperature_Fake_Value) + "...")
 		publish_To_Topic (MQTT_Topic_Temperature, temperature_json_data)
 		toggle = 0
 
 
 publish_Fake_Sensor_Values_to_MQTT()
-
-#====================================================
